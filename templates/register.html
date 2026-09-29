@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% block body %}
+<form method="post" class="card" id="regForm" onsubmit="this.querySelector('button').disabled=true"><h2>Register</h2>
+<label>Username <input name="username" required pattern="[A-Za-z]{5,}" title="At least 5 letters"></label>
+<small>At least 5 letters (upper or lower case).</small>
+<label>Password
+  <div class="pw-wrap">
+    <input id="pw" name="password" type="password" required minlength="5">
+    <button type="button" class="pw-toggle" onclick="togglePw('pw', this)">Show</button>
+  </div>
+</label>
+<small>At least 5 characters with a letter, a digit and one of $ % *.</small>
+<button>Register</button>
+<p>Already registered? <a href="{{ url_for('login') }}">Log in</a></p></form>
+<script>
+// Post/Redirect/Get safety net: if the user still manages to resubmit (e.g. via
+// browser back/forward cache), don't double-disable a form that already reset.
+window.addEventListener("pageshow", () => {
+  const b = document.querySelector("#regForm button");
+  if (b) b.disabled = false;
+});
+</script>
+{% endblock %}

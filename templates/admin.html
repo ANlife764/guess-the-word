@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block body %}
+<section class="card"><h2>Daily report</h2>
+<form method="get"><input type="date" name="date" value="{{ day }}"><input type="hidden" name="username" value="{{ username }}"><button>Show</button></form>
+<p>Users who played on {{ day }}: <b>{{ daily.users }}</b><br>Correct guesses: <b>{{ daily.correct }}</b></p></section>
+<section class="card"><h2>User report</h2>
+<form method="get"><input type="hidden" name="date" value="{{ day }}">
+<select name="username">{% for p in players %}<option {{ 'selected' if p == username }}>{{ p }}</option>{% endfor %}</select><button>Show</button></form>
+{% if per_user %}<table><tr><th>Date</th><th>Words tried</th><th>Correct guesses</th></tr>
+{% for r in per_user %}<tr><td>{{ r.play_date }}</td><td>{{ r.tried }}</td><td>{{ r.correct }}</td></tr>{% endfor %}</table>
+{% else %}<p>No games for this player yet.</p>{% endif %}</section>
+{% endblock %}

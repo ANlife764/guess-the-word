@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guess the Word</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body>
+<header><a class="brand" href="{{ url_for('home') }}">Guess the Word</a>
+{% if session.username %}<span>{{ session.username }} ({{ session.role }}) · <a href="{{ url_for('logout') }}">Log out</a></span>{% endif %}</header>
+<main>
+{% for cat, m in get_flashed_messages(with_categories=true) %}<p class="flash {{ cat }}">{{ m }}</p>{% endfor %}
+<script>
+function togglePw(id, btn) {
+  const input = document.getElementById(id);
+  const showing = input.type === "text";
+  input.type = showing ? "password" : "text";
+  btn.textContent = showing ? "Show" : "Hide";
+}
+</script>
+{% block body %}{% endblock %}
+</main></body></html>

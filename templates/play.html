@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block body %}
+<section class="card center">
+<p id="info"></p><p id="error" class="flash error" hidden></p>
+<div id="grid" class="grid"></div>
+<form id="guessForm" hidden><input id="guess" maxlength="5" autocomplete="off" placeholder="TYPE 5 LETTERS"><button>Submit guess</button></form>
+<button id="startBtn" hidden>Start new word</button>
+</section>
+<div id="modal" class="modal" hidden><div><p id="modalText"></p><button id="okBtn">OK</button></div></div>
+<script src="{{ url_for('static', filename='game.js') }}"></script>
+{% endblock %}
