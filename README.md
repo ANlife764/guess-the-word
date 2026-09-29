@@ -19,7 +19,6 @@ pip install -r requirements.txt
 python app.py            # open http://127.0.0.1:5000
 ```
 Default admin (created on first run): `admin` / `Admin$123`. Players register from the UI.
-Set `SECRET_KEY` in the environment for any real deployment.
 
 ## Test
 ```bash
